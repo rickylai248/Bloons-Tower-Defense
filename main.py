@@ -303,10 +303,10 @@ def workEvents(selected,wave,speed):
             if event.key == pygame.K_s and speed>1: speed-=1
     return selected,wave,speed
 
-
-
+# main file
 def main():
     pygame.init()
+    # https://www.pygame.org/docs/ref/pygame.html
     os.environ['SDL_VIDEO_CENTERED'] = '1'
     pygame.display.set_caption('Bloons Tower Defence')
     screen = pygame.display.set_mode((scrwid,scrhei))
@@ -323,8 +323,6 @@ def main():
         for x in range(scrwid//w): background.blit(plank,(x*w,scrhei-(y+1)*h))
     background.blit(money,(scrwid-w+6,h//2-money.get_height()//2))
     background.blit(heart,(scrwid-w+6,h+h//2-heart.get_height()//2))
-
-
     
     level_img,t1,t2 = mapvar.get_background()
     loadImages()
@@ -332,8 +330,9 @@ def main():
     selected = None
     speed = 3
     wave = 1
+    # optional music
     play_music('music/maintheme.mp3')
-
+    # application running
     while True:
         starttime = time.time()
         clock.tick(fps)
@@ -368,8 +367,6 @@ def main():
         dispText(screen,wave)
 
         pygame.display.flip()
-
-
 
 if __name__ == '__main__':
     main()

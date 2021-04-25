@@ -1,15 +1,11 @@
+# Balloon Tower Defense 5 Simple Clone
 
+Pygame Installation
+- https://www.pygame.org/wiki/GettingStarted
+- Make sure you have Python installed
 
-SPACE: begin round
-W: increase speed
-S: decrease speed
+Space: Begin Round
+W: + Speed
+S: - Speed
 
-
-all free for you to mess about and learn with
-
-all resources are from bloons tower defense 5
-which i got by screen shotting and modifying them
-and to get the music, i just recorded them xD
-
-lol
-
+https://www.pygame.org/docs/ref/pygame.html
