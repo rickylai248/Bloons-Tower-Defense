@@ -1,4 +1,4 @@
-# Balloon Tower Defense 5 Simple Clone
+## Balloon Tower Defense 5 Simple Clone
 
 Pygame Installation
 - https://www.pygame.org/wiki/GettingStarted
