@@ -1,8 +1,12 @@
 import pygame, sys, os, time, math
 
+# Width screen
 scrwid = 800
+# Height screen
 scrhei = 600
+#
 squsize = 50
+# Original upscaled (Frames per second)
 fps = 30
 
 enemylist = []
@@ -10,6 +14,7 @@ towerlist = []
 bulletlist = []
 iconlist = []
 senderlist = []
+# initalize empty arrays of items on new map
 
 colors = {
     'yellow':   (255,255,0),
@@ -22,13 +27,14 @@ colors = {
     'purple':   (197,125,190),
     'brown':    (110,73,32),}
 
+# Optional music
 def play_music(file, volume=1, loop=-1):
     pygame.mixer.music.load(file)
     pygame.mixer.music.set_volume(volume)
     pygame.mixer.music.play(loop)
-   
+#
 def stop_music(): pygame.mixer.music.stop()
-
+#
 def imgLoad(file,size=None):
     image = pygame.image.load(file).convert_alpha()
     return pygame.transform.scale(image,size) if size else image
@@ -105,7 +111,7 @@ mapvar = Map()
 
 
 class Enemy:
-    layers = [ # Name Health Speed CashPrize
+    layers = [ # Name Health Speed CashReward
         ('red',      1, 1.0, 0),
         ('darkblue', 1, 1.0, 0),
         ('green',    1, 1.2, 0),
@@ -177,6 +183,7 @@ class Tower:
                 return enemy.rect.center
 
 class createTower(Tower):
+    # generate the tower
     def __init__(self,tower,pos,info):
         self.tower = tower
         self.cost,self.firerate,self.range,self.damage = info
@@ -203,8 +210,10 @@ class Icon:
         'spike factory'       : [ 755, 1.0, 40, 1],
         'road spikes'         : [  30, 1.0, 40, 1],
         'exploding pineapple' : [  25, 1.0, 40, 1],}
+    # based off the official 2011 Ninja Kiwi game
 
     def __init__(self,tower):
+        # initalize tower and it's properties
         self.tower = tower
         self.cost,self.firerate,self.range,self.damage = self.towers[tower]
         iconlist.append(self)
@@ -222,7 +231,8 @@ def dispText(screen,wavenum):
     for string,pos in strings:
         text = font.render(string,2,(0,0,0))
         screen.blit(text,text.get_rect(midleft=pos))
-
+# https://realpython.com/lessons/using-blit-and-flip/
+# Block Transfer, and .blit() is how you copy the contents of one Surface to another
 def drawTower(screen,tower,selected):
     screen.blit(tower.image,tower.rect)
     if tower==selected:
@@ -273,7 +283,7 @@ class Sender:
     def update(self,frametime,wave):
         if not self.enemies:
             if not enemylist: senderlist.remove(self); wave+=1; player.money+=99+self.wave
-        elif self.timer>0: self.timer -= frametime
+        elif self.timer > 0: self.timer -= frametime
         else: self.timer = self.rate; Enemy(self.enemies[0]); del self.enemies[0]
         return wave
 
@@ -307,6 +317,7 @@ def workEvents(selected,wave,speed):
 def main():
     pygame.init()
     # https://www.pygame.org/docs/ref/pygame.html
+
     os.environ['SDL_VIDEO_CENTERED'] = '1'
     pygame.display.set_caption('Bloons Tower Defence')
     screen = pygame.display.set_mode((scrwid,scrhei))
