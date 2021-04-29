@@ -16,7 +16,7 @@ iconlist = []
 senderlist = []
 # initalize empty arrays of items on new map
 
-colors = {
+colors = { # R,G,B
     'yellow':   (255,255,0),
     'lime':     (0,255,0),
     'darkblue': (0,0,255),
@@ -40,7 +40,7 @@ def imgLoad(file,size=None):
     return pygame.transform.scale(image,size) if size else image
 
 class Player:
-    towers = [
+    towers = [ # Name of monkey tower
         'dart monkey',
         'tack shooter',
         'sniper monkey',
@@ -100,6 +100,7 @@ class Map:
             self.pathpoints+=[0]
 
     def get_background(self):
+        # load from background png
         background = imgLoad('maps/%s/image.png' % self.map)
         background2 = imgLoad('maps/%s/image2.png' % self.map).convert_alpha()
         background3 = imgLoad('maps/%s/image3.png' % self.map).convert_alpha()
@@ -113,6 +114,7 @@ mapvar = Map()
 class Enemy:
     layers = [ # Name Health Speed CashReward
         ('red',      1, 1.0, 0),
+        # ('Name'   Health, Speed, CashReward),
         ('darkblue', 1, 1.0, 0),
         ('green',    1, 1.2, 0),
         ('yellow',   1, 2.0, 0),]
@@ -195,8 +197,9 @@ class createTower(Tower):
         Tower.__init__(self,pos)
 
 class Icon:
-    towers = { # Cost FireRate Range Damage
+    towers = { # Cost Fire Rate Range Damage
         'dart monkey'         : [ 215, 1.0, 100, 1],
+        # [ Cost, Fire Rate, Range, Damage]
         'tack shooter'        : [ 390, 1.0, 40, 1],
         'sniper monkey'       : [ 430, 1.0, 40, 1],
         'boomerang thrower'   : [ 430, 1.0, 40, 1],
