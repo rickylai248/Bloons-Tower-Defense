@@ -327,7 +327,8 @@ def main():
     mapvar.getmovelist()
 
     background = pygame.Surface((800,600)); background.set_colorkey((0,0,0))
-    heart,money,plank = imgLoad('images/heart.png'),imgLoad('images/money.png'),imgLoad('images/plank.png')
+    # load values of heart (lives), money (cash to spend), and plank interface
+    heart,money,plank = imgLoad('images/hearts.png'),imgLoad('images/moneySign.png'),imgLoad('images/plankBlank.png')
     w,h = plank.get_size()
     for y in range(scrhei//h): background.blit(plank,(scrwid-w,y*h))
     for y in range(3):
