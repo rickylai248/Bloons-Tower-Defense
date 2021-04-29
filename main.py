@@ -68,7 +68,7 @@ TowerImageArray = dict()
 def loadImages():
     for tower in player.towers: TowerImageArray[tower] = imgLoad('towers/'+tower+'.png')
 
-    bloon = imgLoad('enemies/bloon.png')
+    bloon = imgLoad('enemies/bloonImg.png')
     EnemyImageArray['red'] = bloon
     width,height = bloon.get_size()
     for name in colors:
