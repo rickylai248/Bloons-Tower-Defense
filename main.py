@@ -212,7 +212,7 @@ class Icon:
     towers = { # Cost Fire Rate Range Damage
         'dart monkey'         : [ 215, 1.0, 100, 1],
         # [ Cost, Fire Rate, Range, Damage]
-        'tack shooter'        : [ 390, 1.0, 40, 1],
+        'tack shooter'        : [ 390, 1.0, 70, 1],
         'sniper monkey'       : [ 430, 0.5, 200, 1],
         'boomerang thrower'   : [ 430, 1.0, 90, 1],
         'ninja monkey'        : [ 650, 1.0, 90, 1],
