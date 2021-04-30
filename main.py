@@ -238,7 +238,8 @@ class Icon:
 
 
 def dispText(screen,wavenum):
-    font = pygame.font.Font('C:/Windows/Fonts/ARCHRISTY.ttf',18)
+    #font = pygame.font.Font('C:/Windows/Fonts/ARCHRISTY.ttf',18)
+    font = pygame.font.SysFont('arial', 18)
     # Feel free to change the font here
     h = font.get_height()+2
     strings = [('Round: %d/%d' % (wavenum,len(mapvar.waves)),(200,20)),
