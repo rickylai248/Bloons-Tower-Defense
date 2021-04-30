@@ -32,7 +32,8 @@ def play_music(file, volume=1, loop=-1):
     pygame.mixer.music.load(file)
     pygame.mixer.music.set_volume(volume)
     pygame.mixer.music.play(loop)
-#
+# comment out if you don't want music
+
 def stop_music(): pygame.mixer.music.stop()
 #
 def imgLoad(file,size=None):
