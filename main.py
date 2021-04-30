@@ -30,6 +30,7 @@ colors = { # R,G,B
 # Optional music
 def play_music(file, volume=1, loop=-1):
     pygame.mixer.music.load(file)
+    # load music from file mp3
     pygame.mixer.music.set_volume(volume)
     pygame.mixer.music.play(loop)
 # comment out if you don't want music
@@ -69,6 +70,7 @@ EnemyImageArray = dict()
 TowerImageArray = dict()
 def loadImages():
     for tower in player.towers: TowerImageArray[tower] = imgLoad('towers/'+tower+'.png')
+    # load selected tower
 
     bloon = imgLoad('enemies/bloonImg.png')
     EnemyImageArray['red'] = bloon
@@ -79,12 +81,14 @@ def loadImages():
             for y in range(height):
                 p = image.get_at((x,y))[:-1]
                 if p not in ((0,0,0),(255,255,255)):
+                    # check if in rgb colour bounds
                     c = colors[name]
                     r,g,b = p[0]*c[0]/255, p[0]*c[1]/255, p[0]*c[2]/255
                     image.set_at((x,y),(min(int(r),255),min(int(g),255),min(int(b),255)))
         EnemyImageArray[name] = image
 
-def get_angle(a,b): return 180-(math.atan2(b[0]-a[0],b[1]-a[1]))/(math.pi/180)
+def get_angle(a,b):
+    return 180-(math.atan2(b[0]-a[0],b[1]-a[1]))/(math.pi/180)
 
 class Map:
     # setup map
@@ -107,7 +111,9 @@ class Map:
         background = imgLoad('maps/%s/image.png' % self.map)
         background2 = imgLoad('maps/%s/image2.png' % self.map).convert_alpha()
         background3 = imgLoad('maps/%s/image3.png' % self.map).convert_alpha()
-        for i in range(len(self.targets)-1): pygame.draw.line(background,(0,0,0),self.targets[i],self.targets[i+1])
+        for i in range(len(self.targets)-1):
+            pygame.draw.line(background,(0,0,0),self.targets[i],self.targets[i+1])
+
         return background,background2,background3
 
 mapvar = Map()
@@ -125,19 +131,17 @@ class Enemy:
     # initalize enemy
     def __init__(self,layer):
         self.layer = layer
-        self.setlayer()
-
+        self.setLayer()
         self.targets = mapvar.targets
         self.pos = list(self.targets[0])
         self.target = 0
         self.next_target()
         self.rect = self.image.get_rect(center=self.pos)
         self.distance = 0
-
         enemyList.append(self)
 
-    def setlayer(self): self.name,self.health,self.speed,self.cashprize = self.layers[self.layer]; self.image = EnemyImageArray[self.name]
-    def nextlayer(self): self.layer-=1; self.setlayer()
+    def setLayer(self): self.name,self.health,self.speed,self.cashprize = self.layers[self.layer]; self.image = EnemyImageArray[self.name]
+    def nextLayer(self): self.layer-=1; self.setLayer()
 
     def next_target(self):
         # check if bloons reached the ending
@@ -145,14 +149,14 @@ class Enemy:
             self.target+=1; t=self.targets[self.target]; self.angle = 180-(math.atan2(t[0]-self.pos[0],t[1]-self.pos[1]))/(math.pi/180)
             self.vx,self.vy = math.sin(math.radians(self.angle)),-math.cos(math.radians(self.angle))
         # end game / player if so (no health)
-        else: self.kill(); player.health-=self.layer+1
+        else: self.kill(); player.health -= (self.layer+1)
 
     def hit(self,damage):
         player.money+=1
         self.health -= damage
         if self.health<=0:
             player.money+=self.cashprize
-            self.nextlayer() if self.layer>0 else self.kill()
+            self.nextLayer() if self.layer>0 else self.kill()
 
     def kill(self): enemyList.remove(self)
 
@@ -161,6 +165,7 @@ class Enemy:
         a,b = self.pos,self.targets[self.target]
         
         a[0] += self.vx*speed
+        #
         a[1] += self.vy*speed
         
         if (b[0]-a[0])**2+(b[1]-a[1])**2<=speed**2: self.next_target()
@@ -197,7 +202,7 @@ class createTower(Tower):
         self.tower = tower
         self.cost,self.firerate,self.range,self.damage = info
         self.rangesq = self.range**2
-        
+        # set properties (damage, firerate, range)
         self.image = TowerImageArray[tower]
         self.imagecopy = self.image.copy()
         self.angle = 0
@@ -234,10 +239,12 @@ class Icon:
 
 def dispText(screen,wavenum):
     font = pygame.font.Font('C:/Windows/Fonts/ARCHRISTY.ttf',18)
+    # Feel free to change the font here
     h = font.get_height()+2
     strings = [('Round: %d/%d' % (wavenum,len(mapvar.waves)),(200,20)),
                (str(player.money),(730,15)),
                (str(max(player.health,0)),(730,45))]
+               # set player health
     for string,pos in strings:
         text = font.render(string,2,(0,0,0))
         screen.blit(text,text.get_rect(midleft=pos))
@@ -247,11 +254,12 @@ def dispText(screen,wavenum):
 # Block Transfer, and .blit() is how you copy the contents of one Surface to another
 def drawTower(screen,tower,selected):
     screen.blit(tower.image,tower.rect)
-    if tower==selected:
+    if tower == selected:
         rn = tower.range
         surface = pygame.Surface((2*rn,2*rn)).convert_alpha(); surface.fill((0,0,0,0))
         pygame.draw.circle(surface,(0,255,0,85),(rn,rn),rn)
         screen.blit(surface,tower.rect.move((-1*rn,-1*rn)).center)
+
     elif tower.rect.collidepoint(pygame.mouse.get_pos()):
         rn = tower.range
         surface = pygame.Surface((2*rn,2*rn)).convert_alpha(); surface.fill((0,0,0,0))
@@ -261,6 +269,7 @@ def drawTower(screen,tower,selected):
 def selectedIcon(screen,selected):
 
     mpos = pygame.mouse.get_pos()
+    # using active mouse position
     image = TowerImageArray[selected.tower]
     rect = image.get_rect(center=mpos)
     screen.blit(image,rect)
