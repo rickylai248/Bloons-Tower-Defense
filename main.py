@@ -236,6 +236,7 @@ def dispText(screen,wavenum):
         screen.blit(text,text.get_rect(midleft=pos))
     
 # https://realpython.com/lessons/using-blit-and-flip/
+
 # Block Transfer, and .blit() is how you copy the contents of one Surface to another
 def drawTower(screen,tower,selected):
     screen.blit(tower.image,tower.rect)
