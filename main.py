@@ -43,20 +43,20 @@ def imgLoad(file,size=None):
 
 class Player:
     towers = [ # Name of monkey tower
-        'dart monkey',
-        'tack shooter',
-        'sniper monkey',
-        'boomerang thrower',
-        'ninja monkey',
-        'bomb tower',
-        'ice tower',
-        'glue gunner',
-        'monkey buccaneer',
-        'super monkey',
-        'monkey apprentice',
-        'spike factory',
-        'road spikes',
-        'exploding pineapple',]
+        'Dart Monkey',
+        'Tack Shooter',
+        'Sniper Monkey',
+        'Boomerang Thrower',
+        'Ninja Monkey',
+        'Bomb Tower',
+        'Ice Tower',
+        'Glue Gunner',
+        'Monkey Buccaneer',
+        'Super Monkey',
+        'Monkey Apprentice',
+        'Spike Factory',
+        'Road Spikes',
+        'Exploding Pineapple',]
 
     def __init__(self):
         self.health = 100
@@ -210,21 +210,21 @@ class createTower(Tower):
 
 class Icon:
     towers = { # Cost Fire Rate Range Damage
-        'dart monkey'         : [ 215, 1.0, 100, 1],
+        'Dart Monkey'         : [ 215, 1.0, 100, 1],
         # [ Cost, Fire Rate, Range, Damage]
-        'tack shooter'        : [ 390, 1.0, 70, 1],
-        'sniper monkey'       : [ 430, 0.5, 200, 1],
-        'boomerang thrower'   : [ 430, 1.0, 90, 1],
-        'ninja monkey'        : [ 650, 1.0, 90, 1],
-        'bomb tower'          : [ 700, 0.7, 90, 1],
-        'ice tower'           : [ 410, 0.8, 90, 1],
-        'glue gunner'         : [ 325, 0.9, 100, 1],
-        'monkey buccaneer'    : [ 650, 0.9, 100, 1],
-        'super monkey'        : [4320, 8.0, 200, 1],
-        'monkey apprentice'   : [ 595, 1.0, 60, 1],
-        'spike factory'       : [ 755, 1.0, 40, 1],
-        'road spikes'         : [  30, 1.0, 40, 1],
-        'exploding pineapple' : [  25, 1.0, 60, 1],}
+        'Tack Shooter'        : [ 390, 1.0, 70, 1],
+        'Sniper Monkey'       : [ 430, 1.5, 200, 1],
+        'Boomerang Thrower'   : [ 430, 1.0, 90, 1],
+        'Ninja Monkey'        : [ 650, 1.0, 90, 1],
+        'Bomb Tower'          : [ 700, 0.7, 90, 1],
+        'Ice Tower'           : [ 410, 0.8, 90, 1],
+        'Glue Gunner'         : [ 325, 0.9, 100, 1],
+        'Monkey Buccaneer'    : [ 650, 0.9, 100, 1],
+        'Super Monkey'        : [4320, 0.1, 200, 1],
+        'Monkey Apprentice'   : [ 595, 1.0, 60, 1],
+        'Spike Factory'       : [ 755, 1.0, 40, 1],
+        'Road Spikes'         : [  30, 1.0, 40, 1],
+        'Exploding Pineapple' : [  25, 1.0, 60, 1],}
     # based off the official 2011 Ninja Kiwi game
 
     def __init__(self,tower):
@@ -332,7 +332,7 @@ def workEvents(selected,wave,speed):
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and not enemyList:
                 if wave<=len(mapvar.waves): Sender(wave)
-                else: print('No more rounds! Soz... :(')
+                else: print('Congratulations!! You survived the swarm')
 
             if event.key == pygame.K_k and selected in towerList: player.money+=int(selected.cost*0.9); towerList.remove(selected); selected = None
             if event.key == pygame.K_w and speed<10: speed+=1
