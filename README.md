@@ -12,10 +12,12 @@ Pygame Installation
 - https://www.pygame.org/wiki/GettingStarted
 - Make sure you have Python installed
 
-Space: Begin Round
+Space: Begin Round (Important)
 W: + Speed
 S: - Speed
 
 https://www.pygame.org/docs/ref/pygame.html
 "pip3 install pygame
 python3 myscript.py"
+
+Unlimited waves and tower upgrades coming soon!
