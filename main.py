@@ -176,6 +176,7 @@ class Tower:
                 pygame.draw.line(screen,(255,255,255),self.rect.center,enemypoint)
                 self.targetTimer=self.startTargetTimer
     def target(self):
+        # for each enemy loop
         for enemy in sorted(enemylist,key=lambda i: i.distance,reverse=True):
             if (self.rect.centerx-enemy.rect.centerx)**2+(self.rect.centery-enemy.rect.centery)**2<=self.rangesq:
                 self.angle = int(get_angle(self.rect.center,enemy.rect.center))
@@ -234,7 +235,7 @@ def dispText(screen,wavenum):
     for string,pos in strings:
         text = font.render(string,2,(0,0,0))
         screen.blit(text,text.get_rect(midleft=pos))
-    
+
 # https://realpython.com/lessons/using-blit-and-flip/
 
 # Block Transfer, and .blit() is how you copy the contents of one Surface to another
@@ -252,6 +253,7 @@ def drawTower(screen,tower,selected):
         screen.blit(surface,tower.rect.move((-1*rn,-1*rn)).center)
 
 def selectedIcon(screen,selected):
+
     mpos = pygame.mouse.get_pos()
     image = TowerImageArray[selected.tower]
     rect = image.get_rect(center=mpos)
@@ -264,13 +266,16 @@ def selectedIcon(screen,selected):
     screen.blit(surface,surface.get_rect(center=mpos))
 
 def selectedTower(screen,selected,mousepos):
+
     selected.genButtons(screen)
+
     for img,rect,info,infopos,cb in selected.buttonlist:
         screen.blit(img,rect)
         if rect.collidepoint(mousepos): screen.blit(info,infopos)
 
 def drawIcon(screen,icon,mpos,font):
     screen.blit(icon.img,icon.rect)
+
     if icon.rect.collidepoint(mpos):
         text = font.render("%s Tower (%d)" % (icon.tower,icon.cost),2,(0,0,0))
         textpos = text.get_rect(right=700-6,centery=icon.rect.centery)
