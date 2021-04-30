@@ -63,6 +63,7 @@ class Player:
 player = Player()
 
 
+# store images using a dictionary 
 EnemyImageArray = dict()
 TowerImageArray = dict()
 def loadImages():
@@ -85,6 +86,7 @@ def loadImages():
 def get_angle(a,b): return 180-(math.atan2(b[0]-a[0],b[1]-a[1]))/(math.pi/180)
 
 class Map:
+    # setup map
     def __init__(self):
         self.map = 'monkey lane'
         self.loadmap()
@@ -119,6 +121,7 @@ class Enemy:
         ('green',    1, 1.2, 0),
         ('yellow',   1, 2.0, 0),]
 
+    # initalize enemy
     def __init__(self,layer):
         self.layer = layer
         self.setlayer()
@@ -136,9 +139,11 @@ class Enemy:
     def nextlayer(self): self.layer-=1; self.setlayer()
 
     def next_target(self):
+        # check if bloons reached the ending
         if self.target<len(self.targets)-1:
             self.target+=1; t=self.targets[self.target]; self.angle = 180-(math.atan2(t[0]-self.pos[0],t[1]-self.pos[1]))/(math.pi/180)
             self.vx,self.vy = math.sin(math.radians(self.angle)),-math.cos(math.radians(self.angle))
+        # end game / player if so (no health)
         else: self.kill(); player.health-=self.layer+1
 
     def hit(self,damage):
