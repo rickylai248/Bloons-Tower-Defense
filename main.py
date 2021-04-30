@@ -1,19 +1,19 @@
 import pygame, sys, os, time, math
 
-# Width screen
-scrwid = 800
+# Width screen. Pixels
+screenWidth = 800
 # Height screen
-scrhei = 600
+screenHeight = 600
 #
-squsize = 50
+squareSize = 50
 # Original upscaled (Frames per second)
 fps = 30
 
-enemylist = []
-towerlist = []
-bulletlist = []
-iconlist = []
-senderlist = []
+enemyList = []
+towerList = []
+bulletList = []
+iconList = []
+senderList = []
 # initalize empty arrays of items on new map
 
 colors = { # R,G,B
@@ -134,7 +134,7 @@ class Enemy:
         self.rect = self.image.get_rect(center=self.pos)
         self.distance = 0
 
-        enemylist.append(self)
+        enemyList.append(self)
 
     def setlayer(self): self.name,self.health,self.speed,self.cashprize = self.layers[self.layer]; self.image = EnemyImageArray[self.name]
     def nextlayer(self): self.layer-=1; self.setlayer()
@@ -154,7 +154,7 @@ class Enemy:
             player.money+=self.cashprize
             self.nextlayer() if self.layer>0 else self.kill()
 
-    def kill(self): enemylist.remove(self)
+    def kill(self): enemyList.remove(self)
 
     def move(self,frametime):
         speed = frametime*fps*self.speed
@@ -171,7 +171,7 @@ class Tower:
     def __init__(self,pos):
         self.targetTimer = 0
         self.rect = self.image.get_rect(center=pos)
-        towerlist.append(self)
+        towerList.append(self)
 
     def takeTurn(self,frametime,screen):
         self.startTargetTimer = self.firerate
@@ -183,7 +183,7 @@ class Tower:
                 self.targetTimer=self.startTargetTimer
     def target(self):
         # for each enemy loop
-        for enemy in sorted(enemylist,key=lambda i: i.distance,reverse=True):
+        for enemy in sorted(enemyList,key=lambda i: i.distance,reverse=True):
             if (self.rect.centerx-enemy.rect.centerx)**2+(self.rect.centery-enemy.rect.centery)**2<=self.rangesq:
                 self.angle = int(get_angle(self.rect.center,enemy.rect.center))
                 self.image = pygame.transform.rotate(self.imagecopy,-self.angle)
@@ -226,7 +226,7 @@ class Icon:
         # initalize tower and it's properties
         self.tower = tower
         self.cost,self.firerate,self.range,self.damage = self.towers[tower]
-        iconlist.append(self)
+        iconList.append(self)
         self.img = pygame.transform.scale(TowerImageArray[tower],(41,41))
         i = player.towers.index(tower); x,y = i%2,i//2
         self.rect = self.img.get_rect(x=700+x*(41+6)+6,y=100+y*(41+6)+6)
@@ -294,11 +294,11 @@ class Sender:
         for enemy in enemies:
             amount,layer = enemy.split('*')
             self.enemies += [eval(layer)-1]*eval(amount)
-        senderlist.append(self)
+        senderList.append(self)
 
     def update(self,frametime,wave):
         if not self.enemies:
-            if not enemylist: senderlist.remove(self); wave+=1; player.money+=99+self.wave
+            if not enemyList: senderList.remove(self); wave+=1; player.money+=99+self.wave
         elif self.timer > 0: self.timer -= frametime
         else: self.timer = self.rate; Enemy(self.enemies[0]); del self.enemies[0]
         return wave
@@ -309,22 +309,22 @@ def workEvents(selected,wave,speed):
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 3: selected = None
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
 
-            if selected in towerlist: selected = None
-            elif selected in iconlist:
+            if selected in towerList: selected = None
+            elif selected in iconList:
                 if player.money>=selected.cost:
                     rect = selected.img.get_rect(center=event.pos)
                     collide = False
                     if not collide: player.money-=selected.cost; selected = createTower(selected.tower,event.pos,selected.towers[selected.tower])
 
-            for obj in iconlist + (towerlist if not selected else []):
+            for obj in iconList + (towerList if not selected else []):
                 if obj.rect.collidepoint(event.pos): selected = obj; break
 
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE and not enemylist:
+            if event.key == pygame.K_SPACE and not enemyList:
                 if wave<=len(mapvar.waves): Sender(wave)
                 else: print('No more rounds! Soz... :(')
 
-            if event.key == pygame.K_k and selected in towerlist: player.money+=int(selected.cost*0.9); towerlist.remove(selected); selected = None
+            if event.key == pygame.K_k and selected in towerList: player.money+=int(selected.cost*0.9); towerList.remove(selected); selected = None
             if event.key == pygame.K_w and speed<10: speed+=1
             if event.key == pygame.K_s and speed>1: speed-=1
     return selected,wave,speed
@@ -336,7 +336,7 @@ def main():
 
     os.environ['SDL_VIDEO_CENTERED'] = '1'
     pygame.display.set_caption('Bloons Tower Defence')
-    screen = pygame.display.set_mode((scrwid,scrhei))
+    screen = pygame.display.set_mode((screenWidth,screenHeight))
     clock = pygame.time.Clock()
     font = pygame.font.Font(None,20)
 
@@ -346,11 +346,11 @@ def main():
     # load values of heart (lives), money (cash to spend), and plank interface
     heart,money,plank = imgLoad('images/hearts.png'),imgLoad('images/moneySign.png'),imgLoad('images/plankBlank.png')
     w,h = plank.get_size()
-    for y in range(scrhei//h): background.blit(plank,(scrwid-w,y*h))
+    for y in range(screenHeight//h): background.blit(plank,(screenWidth-w,y*h))
     for y in range(3):
-        for x in range(scrwid//w): background.blit(plank,(x*w,scrhei-(y+1)*h))
-    background.blit(money,(scrwid-w+6,h//2-money.get_height()//2))
-    background.blit(heart,(scrwid-w+6,h+h//2-heart.get_height()//2))
+        for x in range(screenWidth//w): background.blit(plank,(x*w,screenHeight-(y+1)*h))
+    background.blit(money,(screenWidth-w+6,h//2-money.get_height()//2))
+    background.blit(heart,(screenWidth-w+6,h+h//2-heart.get_height()//2))
     
     level_img,t1,t2 = mapvar.get_background()
     loadImages()
@@ -368,10 +368,10 @@ def main():
         screen.blit(level_img,(0,0))
         mpos = pygame.mouse.get_pos()
 
-        if senderlist: wave = senderlist[0].update(frametime,wave)
+        if senderList: wave = senderList[0].update(frametime,wave)
 
         z0,z1 = [],[]
-        for enemy in enemylist:
+        for enemy in enemyList:
             d = enemy.distance
             if d<580: z1+=[enemy]
             elif d<950: z0+=[enemy]
@@ -384,12 +384,12 @@ def main():
         screen.blit(t2,(0,0))
         for enemy in z1: enemy.move(frametime); screen.blit(enemy.image,enemy.rect)
 
-        for tower in towerlist: tower.takeTurn(frametime,screen); drawTower(screen,tower,selected)
+        for tower in towerList: tower.takeTurn(frametime,screen); drawTower(screen,tower,selected)
 
 
         screen.blit(background,(0,0))
 
-        for icon in iconlist: drawIcon(screen,icon,mpos,font)
+        for icon in iconList: drawIcon(screen,icon,mpos,font)
         selected,wave,speed = workEvents(selected,wave,speed)
         if selected and selected.__class__ == Icon: selectedIcon(screen,selected)
         dispText(screen,wave)
