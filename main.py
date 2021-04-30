@@ -213,18 +213,18 @@ class Icon:
         'dart monkey'         : [ 215, 1.0, 100, 1],
         # [ Cost, Fire Rate, Range, Damage]
         'tack shooter'        : [ 390, 1.0, 40, 1],
-        'sniper monkey'       : [ 430, 1.0, 40, 1],
-        'boomerang thrower'   : [ 430, 1.0, 40, 1],
-        'ninja monkey'        : [ 650, 1.0, 40, 1],
-        'bomb tower'          : [ 700, 1.0, 40, 1],
-        'ice tower'           : [ 410, 1.0, 40, 1],
-        'glue gunner'         : [ 325, 1.0, 40, 1],
-        'monkey buccaneer'    : [ 650, 1.0, 40, 1],
-        'super monkey'        : [4320, 1.0, 40, 1],
-        'monkey apprentice'   : [ 595, 1.0, 40, 1],
+        'sniper monkey'       : [ 430, 0.5, 200, 1],
+        'boomerang thrower'   : [ 430, 1.0, 90, 1],
+        'ninja monkey'        : [ 650, 1.0, 90, 1],
+        'bomb tower'          : [ 700, 0.7, 90, 1],
+        'ice tower'           : [ 410, 0.8, 90, 1],
+        'glue gunner'         : [ 325, 0.9, 100, 1],
+        'monkey buccaneer'    : [ 650, 0.9, 100, 1],
+        'super monkey'        : [4320, 8.0, 200, 1],
+        'monkey apprentice'   : [ 595, 1.0, 60, 1],
         'spike factory'       : [ 755, 1.0, 40, 1],
         'road spikes'         : [  30, 1.0, 40, 1],
-        'exploding pineapple' : [  25, 1.0, 40, 1],}
+        'exploding pineapple' : [  25, 1.0, 60, 1],}
     # based off the official 2011 Ninja Kiwi game
 
     def __init__(self,tower):
