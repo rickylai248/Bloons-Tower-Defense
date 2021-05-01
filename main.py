@@ -211,21 +211,21 @@ class createTower(Tower):
 class Icon:
     # adjust icons of the towers here
     towers = { # Cost Fire Rate Range Damage
-        'Dart Monkey'         : [ 215, 0.9, 100, 1],
+        'Dart Monkey'         : [ 215, 1.3, 100, 1],
         # [ Cost, Fire Rate, Range, Damage]
         'Tack Shooter'        : [ 390, 1.0, 70, 1],
-        'Sniper Monkey'       : [ 430, 1.5, 200, 1],
+        'Sniper Monkey'       : [ 430, 2.0, 300, 2],
         'Boomerang Thrower'   : [ 430, 1.0, 90, 1],
         'Ninja Monkey'        : [ 650, 1.0, 90, 1],
-        'Bomb Tower'          : [ 700, 0.7, 90, 1],
-        'Ice Tower'           : [ 410, 0.8, 90, 1],
-        'Glue Gunner'         : [ 325, 0.9, 100, 1],
-        'Monkey Buccaneer'    : [ 650, 0.9, 100, 1],
-        'Super Monkey'        : [4320, 0.1, 200, 1],
+        'Bomb Tower'          : [ 700, 1, 90, 2],
+        'Ice Tower'           : [ 410, 1.3, 90, 1],
+        'Glue Gunner'         : [ 325, 1.1, 100, 1],
+        'Monkey Buccaneer'    : [ 650, 0.99, 100, 1],
+        'Super Monkey'        : [4320, 0.15, 200, 1],
         'Monkey Apprentice'   : [ 595, 1.0, 60, 1],
-        'Spike Factory'       : [ 755, 1.0, 40, 1],
-        'Road Spikes'         : [  30, 1.0, 40, 1],
-        'Exploding Pineapple' : [  25, 1.0, 60, 1],}
+        'Spike Factory'       : [ 755, 2.0, 40, 1],
+        'Road Spikes'         : [  30, 5.0, 40, 1],
+        'Exploding Pineapple' : [  25, 2.0, 60, 1],}
     # based off the official 2011 Ninja Kiwi game
 
     def __init__(self,tower):
