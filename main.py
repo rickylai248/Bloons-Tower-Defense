@@ -211,7 +211,7 @@ class createTower(Tower):
 class Icon:
     # adjust icons of the towers here
     towers = { # Cost Fire Rate Range Damage
-        'Dart Monkey'         : [ 215, 1.0, 100, 1],
+        'Dart Monkey'         : [ 215, 0.9, 100, 1],
         # [ Cost, Fire Rate, Range, Damage]
         'Tack Shooter'        : [ 390, 1.0, 70, 1],
         'Sniper Monkey'       : [ 430, 1.5, 200, 1],
