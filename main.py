@@ -214,7 +214,7 @@ class Icon:
         'Dart Monkey'         : [ 215, 1.3, 100, 1],
         # [ Cost, Fire Rate, Range, Damage]
         'Tack Shooter'        : [ 390, 1.0, 70, 1],
-        'Sniper Monkey'       : [ 430, 2.0, 300, 2],
+        'Sniper Monkey'       : [ 430, 2.9, 300, 2],
         'Boomerang Thrower'   : [ 430, 1.0, 90, 1],
         'Ninja Monkey'        : [ 650, 1.0, 90, 1],
         'Bomb Tower'          : [ 700, 1, 90, 2],
