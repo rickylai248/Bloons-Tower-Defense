@@ -28,7 +28,7 @@ colors = { # R,G,B
     'brown':    (110,73,32),}
 
 # Optional music
-def play_music(file, volume=1, loop=-1):
+def play_music(file, volume=0.7, loop=-1):
     pygame.mixer.music.load(file)
     # load music from file mp3
     pygame.mixer.music.set_volume(volume)
