@@ -209,6 +209,7 @@ class createTower(Tower):
         Tower.__init__(self,pos)
 
 class Icon:
+    # adjust icons of the towers here
     towers = { # Cost Fire Rate Range Damage
         'Dart Monkey'         : [ 215, 1.0, 100, 1],
         # [ Cost, Fire Rate, Range, Damage]
@@ -244,6 +245,7 @@ def dispText(screen,wavenum):
     h = font.get_height()+2
     strings = [('Round: %d/%d' % (wavenum,len(mapvar.waves)),(200,20)),
                (str(player.money),(730,15)),
+               # adjust player values here
                (str(max(player.health,0)),(730,45))]
                # set player health
     for string,pos in strings:
