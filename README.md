@@ -12,7 +12,7 @@ Pygame Installation
 - https://www.pygame.org/wiki/GettingStarted
 - Make sure you have Python installed
 
-Space: Begin Round (Important!!!)
+Space: Begin Round (Important!!)
 W: + Speed
 S: - Speed
 
