@@ -13,7 +13,9 @@ Pygame Installation
 - Make sure you have Python installed
 
 Space: Begin Round (Important!)
+
 W: + Speed
+
 S: - Speed
 
 https://www.pygame.org/docs/ref/pygame.html
