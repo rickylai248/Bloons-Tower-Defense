@@ -202,7 +202,9 @@ class createTower(Tower):
         self.tower = tower
         self.cost,self.firerate,self.range,self.damage = info
         self.rangesq = self.range**2
+
         # set properties (damage, firerate, range)
+        
         self.image = TowerImageArray[tower]
         self.imagecopy = self.image.copy()
         self.angle = 0
