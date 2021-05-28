@@ -1,4 +1,4 @@
-# Balloon Tower Defense 5 Simple Clone (2011, Ninja Kiwi)
+# Balloon Tower Defense 5 Clone (2011, Ninja Kiwi)
 
 One of my favourite web browser games growing up, easy to play, contains multiple rounds of balloons (increasingly difficult) that reward cash after it's popped by a tower projectile (Dozens of towers i.e. pure damage to balloons, slow effect, area of effect damage)! 
 
