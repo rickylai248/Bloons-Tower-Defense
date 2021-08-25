@@ -223,9 +223,9 @@ class Icon:
         'Ice Tower'           : [ 410, 1.3, 90, 1],
         'Glue Gunner'         : [ 325, 1.1, 100, 1],
         'Monkey Buccaneer'    : [ 650, 0.99, 100, 1],
-        'Super Monkey'        : [4320, 0.15, 200, 1],
+        'Super Monkey'        : [ 3000, 0.15, 200, 1],
         'Monkey Apprentice'   : [ 595, 1.0, 60, 1],
-        'Spike Factory'       : [ 755, 2.0, 40, 1],
+        'Spike Factory'       : [ 650, 2.0, 40, 1],
         'Road Spikes'         : [  30, 5.0, 40, 1],
         'Exploding Pineapple' : [  25, 2.0, 60, 1],}
     # based off the official 2011 Ninja Kiwi game
