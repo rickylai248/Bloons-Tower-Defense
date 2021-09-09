@@ -215,7 +215,7 @@ class Icon:
     towers = { # Cost Fire Rate Range Damage
         'Dart Monkey'         : [ 215, 1.3, 100, 1],
         # [ Cost, Fire Rate, Range, Damage]
-        'Tack Shooter'        : [ 390, 1.0, 70, 1],
+        'Tack Shooter'        : [ 360, 1.0, 70, 1],
         'Sniper Monkey'       : [ 430, 2.9, 300, 2],
         'Boomerang Thrower'   : [ 430, 1.0, 90, 1],
         'Ninja Monkey'        : [ 650, 1.0, 90, 1],
@@ -286,7 +286,7 @@ def selectedIcon(screen,selected):
     screen.blit(surface,surface.get_rect(center=mpos))
 
 def selectedTower(screen,selected,mousepos):
-
+#testing
     selected.genButtons(screen)
 
     for img,rect,info,infopos,cb in selected.buttonlist:
