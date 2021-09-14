@@ -13,7 +13,7 @@ One of my favourite web browser games growing up, easy to play, contains multipl
 Pygame Installation
 - https://www.pygame.org/wiki/GettingStarted
 - Make sure you have Python installed
- 
+  
 W: + Speed
 
 S: - Speed
