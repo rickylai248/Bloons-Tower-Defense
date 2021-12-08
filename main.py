@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import pygame, sys, os, time, math
 
 # Width screen. Pixels
@@ -69,7 +70,7 @@ player = Player()
 EnemyImageArray = dict()
 TowerImageArray = dict()
 def loadImages():
-    for tower in player.towers: TowerImageArray[tower] = imgLoad('towers/'+tower+'.png')
+    for tower in player.towers: TowerImageArray[tower] = imgLoad('towers/'+tower.lower()+'.png')
     # load selected tower
 
     bloon = imgLoad('enemies/bloonImg.png')
